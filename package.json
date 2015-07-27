@@ -25,6 +25,9 @@
   "dependencies": {
     "hubot": ">= 2.6.0 < 3.0.0",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
+    "shortid": "^2.2.2",
+    "lodash": "^2.4.2",
+    "underscore": "^1.8.3",
     "hubot-slack": ">=3.3.0 < 4.0.0"
   },
   "scripts": {
