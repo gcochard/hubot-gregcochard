@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         D12 turn checker for slack
-// @namespace    http://hubot.gregcochard.com/hubot
-// @updateURL    http://hubot.gregcochard.com/hubot/d12.user.js
-// @version      1.0.0
+// @namespace    https://hubot.gregcochard.com/hubot
+// @updateURL    https://hubot.gregcochard.com/hubot/d12.user.js
+// @version      1.0.1
 // @description  calls hubot with the current player
 // @author       Greg Cochard
 // @match        http://dominating12.com/?cmd=game&sec=play&id=*
@@ -35,7 +35,7 @@ function signalToHubot(player){
 
     setTimeout(function(){
         Ext.Ajax.request({
-            url: "http://hubot.gregcochard.com/hubot/pushturn",
+            url: "https://hubot.gregcochard.com/hubot/pushturn",
             method: 'GET',
             success: console.log,
             failure: console.error,
@@ -50,7 +50,7 @@ function fetchTreaties(cb){
     'use strict';
     var called = false;
     Ext.Ajax.request({
-        url: "http://hubot.gregcochard.com/hubot/treaties",
+        url: "https://hubot.gregcochard.com/hubot/treaties",
         method: 'GET',
         success: function(data){
             if(called){ return; }
@@ -144,7 +144,7 @@ function getQueue(){
 
 function sendDiceToHubot(player, attack, defend){
     Ext.Ajax.request({
-        url: "http://hubot.gregcochard.com/hubot/pushdice",
+        url: "https://hubot.gregcochard.com/hubot/pushdice",
         method: 'POST',
         success: function(){
             var q = getQueue();
