@@ -2,7 +2,7 @@
 // @name         D12 turn checker for slack
 // @namespace    https://hubot-gregcochard.rhcloud.com/hubot
 // @updateURL    https://hubot-gregcochard.rhcloud.com/hubot/d12.user.js
-// @version      1.0.2
+// @version      1.0.3
 // @description  calls hubot with the current player
 // @author       Greg Cochard
 // @match        http://dominating12.com/?cmd=game&sec=play&id=*
@@ -16,8 +16,7 @@ console.log('injected!');
 var users = {
     gcochard: 'greg'
     , greg: 'gcochard'
-    , kevin: 'kwren'
-    , kwren: 'kevin'
+    , kwren: 'kwren'
     , ryanbmilbourne: 'rmilbourne'
     , rmilbourne: 'ryanbmilbourne'
     , jobratt: 'jobratt'
