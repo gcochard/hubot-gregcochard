@@ -34,7 +34,7 @@ module.exports = function(robot){
      * Builds a formatted string listing the current treaties
      */
     var formatTreaties = function(cb){
-        var treaties = robot.brain.get('treaties');
+        var treaties = robot.brain.get('treaties') || {};
         if(!Object.keys(treaties).length){
             return cb(new Error('No active treaties'));
         }
