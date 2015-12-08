@@ -157,7 +157,7 @@ module.exports = function(robot){
 
     robot.respond(/treaty me "(.*)"( [^ ]+){1,5}/i, function(msg){
         var terms = msg.match[1]
-          , requestor = robot.brain.userForId(msg.user).name
+          , requestor = robot.brain.userForId(msg.envelope.user.id).name
           ;
 
         if(!_.contains(players, requestor)){
