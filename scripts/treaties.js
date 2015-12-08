@@ -161,7 +161,8 @@ module.exports = function(robot){
           ;
 
         if(!_.contains(players, requestor)){
-            return msg.reply('I can\'t do that.  You\'re not one of my players!'); 
+            msg.reply('I can\'t do that. You\'re not one of my players!'); 
+            return msg.reply('You are '+requestor+' and my players are '+players.join(', ')); 
         }
 
         var id = shortid.generate();
