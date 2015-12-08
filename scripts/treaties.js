@@ -91,7 +91,7 @@ module.exports = function(robot){
         },
         ratify: function(msg){
             var id = msg.match[1]
-              , sender = robot.brain.userForId(msg.envelope.user.id).mention_name
+              , sender = robot.brain.userForId(msg.user).name
               , treaties = robot.brain.get('treaties')
               ;
 
@@ -120,7 +120,7 @@ module.exports = function(robot){
         },
         decline: function(msg){
             var id = msg.match[1]
-              , sender = robot.brain.userForId(msg.envelope.user.id).mention_name
+              , sender = robot.brain.userForId(msg.user).name
               , treaties = robot.brain.get('treaties')
               ;
 
@@ -157,7 +157,7 @@ module.exports = function(robot){
 
     robot.respond(/treaty me "(.*)"( [^ ]+){1,5}/i, function(msg){
         var terms = msg.match[1]
-          , requestor = robot.brain.userForId(msg.envelope.user.id).mention_name
+          , requestor = robot.brain.userForId(msg.user).name
           ;
 
         if(!_.contains(players, requestor)){
@@ -227,7 +227,7 @@ module.exports = function(robot){
     robot.respond(/treaty add ([a-zA-Z_\-0-9]+) [@]+([a-zA-Z]+)/i, function(msg){
         var id = msg.match[1]
           , player = msg.match[2]
-          , requestor = robot.brain.userForId(msg.envelope.user.id).mention_name
+          , requestor = robot.brain.userForId(msg.user).name
           , treaties = robot.brain.get('treaties')
           ;
 
@@ -274,7 +274,7 @@ module.exports = function(robot){
 
     robot.respond(/untreaty( me)? ([a-zA-Z_\-0-9]+)/i, function(msg){
         var id = msg.match[2];
-        var requestor = robot.brain.userForId(msg.envelope.user.id).mention_name;
+        var requestor = robot.brain.userForId(msg.user).name;
         var treaties = robot.brain.get('treaties');
 
         if(!treaties || !treaties[id]){
