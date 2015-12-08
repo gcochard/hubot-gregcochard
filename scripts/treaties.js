@@ -21,11 +21,12 @@ var shortid = require('shortid');
 var gameRoom = '#games';
 var players = [
                 'mmacfreier',
-                'kevin',
+                'kwren',
                 'greg',
                 'justin',
                 'ryan',
-                'jobratt'
+                'jobratt',
+                'suntan'
 ];
 
 module.exports = function(robot){
@@ -59,12 +60,12 @@ module.exports = function(robot){
         return cb(null, outputString);
     };
 
-    robot.respond(/treaty list/i, function(msg){
+    robot.respond(/treaty lisz?t/i, function(msg){
         formatTreaties(function(err, treaties){
             if(err){
                 return msg.send(err);
             }
-            return msg.send(treaties);
+            return msg.send(treaties + (/z/.test(msg.match[0])?'Liszt is my favorite composer, by the way!':''));
         });
     });
 
