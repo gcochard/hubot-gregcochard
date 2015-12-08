@@ -40,7 +40,7 @@ module.exports = function(robot){
         }
 
         var first = true;
-        var outputString = '/quote ';
+        var outputString = '```\n';
         _.each(treaties, function(val, key){
             if(val.partners.length < 2){
                 return;
@@ -57,6 +57,7 @@ module.exports = function(robot){
             outputString += 'Participating Parties: '+partnerString+'\n'
             outputString += 'Treaty Terms: '+val.terms+'\n===========================\n'; 
         });
+        outputString += '```';
         return cb(null, outputString);
     };
 
@@ -91,7 +92,7 @@ module.exports = function(robot){
         },
         ratify: function(msg){
             var id = msg.match[1]
-              , sender = robot.brain.userForId(msg.user).name
+              , sender = robot.brain.userForId(msg.envelope.user.id).name
               , treaties = robot.brain.get('treaties')
               ;
 
@@ -113,14 +114,14 @@ module.exports = function(robot){
             robot.brain.set('treaties', treaties);
 
             if(treaties[id].partners.length === 2){
-                return msg.send('@all The Treaty of '+id+' has been ratified by two parties and is now in effect for those parties.');
+                return msg.send('@channel The Treaty of '+id+' has been ratified by two parties and is now in effect for those parties.');
             } else if (treaties[id].partners.length > 2){ 
-                return msg.send('@all @'+sender+' is now party to the Treaty of '+id+' and all the agreements stated or implied therein.');
+                return msg.send('@channel @'+sender+' is now party to the Treaty of '+id+' and all the agreements stated or implied therein.');
             }
         },
         decline: function(msg){
             var id = msg.match[1]
-              , sender = robot.brain.userForId(msg.user).name
+              , sender = robot.brain.userForId(msg.envelope.user.id).name
               , treaties = robot.brain.get('treaties')
               ;
 
@@ -135,7 +136,7 @@ module.exports = function(robot){
             }
 
             treaties[id].pending = _.without(treaties[id].pending, sender);
-            msg.send('@all @'+sender+' declined to join the Treaty of '+id);
+            msg.send('@channel @'+sender+' declined to join the Treaty of '+id);
             
             if(!treaties[id].pending.length && treaties[id].partners.length === 1){
                 msg.send('@'+treaties[id].partners[0]+' Nobody wanted to join your treaty.');
@@ -227,7 +228,7 @@ module.exports = function(robot){
     robot.respond(/treaty add ([a-zA-Z_\-0-9]+) [@]+([a-zA-Z]+)/i, function(msg){
         var id = msg.match[1]
           , player = msg.match[2]
-          , requestor = robot.brain.userForId(msg.user).name
+          , requestor = robot.brain.userForId(msg.envelope.user.id).name
           , treaties = robot.brain.get('treaties')
           ;
 
@@ -274,7 +275,7 @@ module.exports = function(robot){
 
     robot.respond(/untreaty( me)? ([a-zA-Z_\-0-9]+)/i, function(msg){
         var id = msg.match[2];
-        var requestor = robot.brain.userForId(msg.user).name;
+        var requestor = robot.brain.userForId(msg.envelope.user.id).name;
         var treaties = robot.brain.get('treaties');
 
         if(!treaties || !treaties[id]){
@@ -286,7 +287,7 @@ module.exports = function(robot){
 
         delete treaties[id];
         robot.brain.set('treaties', treaties);
-        return msg.reply('@all Treaty '+id+' has been dissolved!');
+        return msg.reply('@channel Treaty '+id+' has been dissolved!');
     });
 
 };
