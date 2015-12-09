@@ -39,7 +39,8 @@ module.exports = function(robot) {
         'kevin': 'kevin',
         'matt': 'mmacfreier',
         'jonathan': 'jobratt',
-        'justin': 'hustin'
+        'justin': 'hustin',
+        'suntan':'suntan'
     };
     function formatMessage(username){
         var name = robot.brain.data.turnOrder.split(' ')[username];
@@ -49,9 +50,9 @@ module.exports = function(robot) {
         // dereference aliases as long as they exist
         // don't be dumb and put in circular references
         name = username;
-        while(aliases[name]){
-            name = aliases[name];
-        }
+        //while(aliases[name]){
+        //    name = aliases[name];
+        //}
         if(name){
             return {message:'@'+name+' it\'s your turn',username:name};
         }

@@ -2,7 +2,7 @@
 // @name         D12 turn checker for slack
 // @namespace    https://hubot-gregcochard.rhcloud.com/hubot
 // @updateURL    https://hubot-gregcochard.rhcloud.com/hubot/d12.user.js
-// @version      1.0.3
+// @version      1.0.4
 // @description  calls hubot with the current player
 // @author       Greg Cochard
 // @match        http://dominating12.com/?cmd=game&sec=play&id=*
@@ -17,13 +17,15 @@ var users = {
     gcochard: 'greg'
     , greg: 'gcochard'
     , kwren: 'kwren'
-    , ryanbmilbourne: 'rmilbourne'
-    , rmilbourne: 'ryanbmilbourne'
+    , ryanbmilbourne: 'ryan'
+    , ryan: 'ryanbmilbourne'
     , jobratt: 'jobratt'
     , mmacfreier: 'mmacfreier'
     , justinb: 'justin'
     , justin: 'justinb'
     , loneWolf55: 'channel'
+    , suntan: 'tanleach1001'
+    , tanleach1001: 'suntan'
 }, players = [], playerColors = {};
 
 function signalToHubot(player){
