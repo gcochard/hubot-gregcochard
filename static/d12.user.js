@@ -2,7 +2,7 @@
 // @name         D12 turn checker for slack
 // @namespace    https://hubot-gregcochard.rhcloud.com/hubot
 // @updateURL    https://hubot-gregcochard.rhcloud.com/hubot/d12.user.js
-// @version      1.0.4
+// @version      1.0.5
 // @description  calls hubot with the current player
 // @author       Greg Cochard
 // @match        http://dominating12.com/?cmd=game&sec=play&id=*
@@ -206,15 +206,6 @@ Ext.onReady(function(){
             return v.innerHTML;
         });
         if(!players.length){
-            return;
-        }
-        var abort = false;
-        players.forEach(function(v){
-            if(!(v in users)){
-                abort = true;
-            }
-        });
-        if(abort){
             return;
         }
         var newPlayer = Ext.DomQuery.select('tr:has(.isTurn):last > .name > a') || [];
